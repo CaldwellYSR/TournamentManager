@@ -1,0 +1,10 @@
+<h2><%= @player.name %></h2>
+
+<div class="row">
+  <a class="col-sm-12" href="mailto:<%= @player.email %>"><%= @player.email %></a>
+</div>
+
+<div class="row mt-5">
+  <span class="col-auto mr-auto"><%= link "Edit", to: player_path(@conn, :edit, @player) %></span>
+  <span class="col-auto"><%= link "Back", to: player_path(@conn, :index) %></span>
+</div>

@@ -28,8 +28,9 @@ defmodule TennisWeb do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/tennis_web/templates",
-                        namespace: TennisWeb
+      use Phoenix.View,
+        root: "lib/tennis_web/templates",
+        namespace: TennisWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
@@ -40,6 +41,7 @@ defmodule TennisWeb do
       import TennisWeb.Router.Helpers
       import TennisWeb.ErrorHelpers
       import TennisWeb.Gettext
+      import TennisWeb.InputHelpers
     end
   end
 
