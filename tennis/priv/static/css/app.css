@@ -1,0 +1,28 @@
+/* Space out content a bit */
+body, form, ul, table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Phoenix flash messages */
+.alert:empty { display: none; }
+
+.logo {
+  width: 519px;
+  height: 71px;
+  display: inline-block;
+  margin-bottom: 1em;
+  background-image: url("/images/phoenix.png");
+  background-size: 519px 71px;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+}

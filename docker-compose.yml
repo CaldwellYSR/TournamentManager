@@ -1,0 +1,30 @@
+version: '3.6'
+services:
+  tennis:
+    build:
+      context: .
+      dockerfile: tennis/Dockerfile
+    environment:
+      ECTO_DATABASE_URL: ecto://postgres:postgres@postgres/tennis_dev
+      ECTO_TEST_DATABASE_URL: ecto://postgres:postgres@postgres/tennis_dev
+    links:
+      - postgres
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/code
+      - tennis-build:/code/tennis/_build
+      - tennis-deps:/code/tennis/deps
+  postgres:
+    image: "postgres:9.5.8-alpine"
+    environment:
+      POSTGRES_DB: tennis_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - .:/code
+      - db:/var/lib/postgresql/data
+volumes:
+  tennis-build:
+  tennis-deps:
+  db:
