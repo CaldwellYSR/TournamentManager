@@ -35,7 +35,11 @@ defmodule Tennis.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_player!(id), do: Repo.get!(Player, id)
+  def get(id), do: Repo.get(Player, id)
+
+  def get_by(%{"email" => email}) do
+    Repo.get_by(Player, email: email)
+  end
 
   @doc """
   Creates a player.
