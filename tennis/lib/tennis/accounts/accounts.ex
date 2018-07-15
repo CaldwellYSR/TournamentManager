@@ -3,7 +3,7 @@ defmodule Tennis.Accounts do
   The Accounts context.
   """
 
-  import Ecto.Query, warn: false
+  import Ecto.{Query, Changeset}, warn: false
   alias Tennis.Repo
 
   alias Tennis.Accounts.Player
@@ -55,7 +55,7 @@ defmodule Tennis.Accounts do
   """
   def create_player(attrs \\ %{}) do
     %Player{}
-    |> Player.changeset(attrs)
+    |> Player.create_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -104,5 +104,38 @@ defmodule Tennis.Accounts do
   """
   def change_player(%Player{} = player) do
     Player.changeset(player, %{})
+  end
+
+  def list_sessions(player_id) do
+    with player when is_map(player) <- Repo.get(Player, player_id), do: player.sessions
+  end
+
+  def add_session(%Player{sessions: sessions} = player, session_id, timestamp) do
+    change(player, sessions: put_in(sessions, [session_id], timestamp))
+    |> Repo.update()
+  end
+
+  def delete_session(%Player{sessions: sessions} = player, session_id) do
+    change(player, sessions: Map.delete(sessions, session_id))
+    |> Repo.update()
+  end
+
+  def remove_old_sessions(session_age) do
+    now = System.system_time(:second)
+
+    Enum.map(
+      list_players(),
+      &(change(
+          &1,
+          sessions:
+            :maps.filter(
+              fn _, time ->
+                time + session_age > now
+              end,
+              &1.sessions
+            )
+        )
+        |> Repo.update())
+    )
   end
 end

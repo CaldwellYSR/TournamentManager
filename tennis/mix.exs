@@ -37,6 +37,7 @@ defmodule Tennis.Mixfile do
       {:comeonin, "~> 4.1"},
       {:cowboy, "~> 1.0"},
       {:gettext, "~> 0.11"},
+      {:not_qwerty123, "~> 2.3.0"},
       {:phauxth, "~> 1.2.3"},
       {:phoenix, "~> 1.3.0"},
       {:phoenix_ecto, "~> 3.2"},
