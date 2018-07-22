@@ -10,7 +10,7 @@
   id="venue_map"></div>
 
 <nav class="nav">
-  <span class="nav-item"><%= link "Edit", to: venue_path(@conn, :edit, @venue), class: ["nav-link"] %></span>
+  <%= admin_link(@current_user, venue_path(@conn, :edit, @venue), "Edit", ["nav-link"]) %>
   <span class="nav-item"><%= link "Back", to: venue_path(@conn, :index), class: ["nav-link"] %></span>
 </nav>
 

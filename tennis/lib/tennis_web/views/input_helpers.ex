@@ -2,6 +2,14 @@
 defmodule TennisWeb.InputHelpers do
   use Phoenix.HTML
 
+  def admin_link(current_user, href, text, classes \\ []) do
+    if current_user.role in ["admin"] do
+      ~E"""
+        <a class="<%= Enum.join(classes, " ") %>" href="<%= href %>"><%= text %></a>
+      """
+    end
+  end
+
   def input(form, field, opts \\ []) do
     type = opts[:using] || Phoenix.HTML.Form.input_type(form, field)
 

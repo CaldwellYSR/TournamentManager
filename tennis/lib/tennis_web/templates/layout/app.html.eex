@@ -18,9 +18,8 @@
         <nav class="nav nav-pills justify-content-end" role="navigation">
           <a class="nav-link" href="<%= page_path @conn, :index %>">Home</a>
           <%= if @current_user do %>
-            <%= if @current_user.role in ["admin"] do %>
-              <a class="nav-link" href="<%= player_path @conn, :index %>">Users</a>
-            <% end %>
+          <%= admin_link(@current_user, player_path(@conn, :index), "Users", ["nav-link"]) %>
+          <a class="nav-link" href="<%= venue_path(@conn, :index) %>">Venues</a>
           <a class="nav-link" href="<%= player_path(@conn, :show, @current_user.id) %>"><%= @current_user.email %></a>
           <%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete, class: "btn btn-primary col-auto" %>
           <% else %>

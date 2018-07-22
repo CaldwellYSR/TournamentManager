@@ -18,13 +18,12 @@
       <td><%= venue.number_of_courts %></td>
       <td><%= venue.has_lights %></td>
       <td class="text-right">
-        <span><%= link "Show", to: venue_path(@conn, :show, venue), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: venue_path(@conn, :edit, venue), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: venue_path(@conn, :delete, venue), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <%= admin_link(@current_user, venue_path(@conn, :edit, venue), "Edit", ["btn", "btn-default", "btn-xs"]) %>
+        <%= admin_link(@current_user, venue_path(@conn, :delete, venue), "Delete", ["btn", "btn-danger", "btn-xs"]) %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Venue", to: venue_path(@conn, :new) %></span>
+<span><%= admin_link(@current_user, venue_path(@conn, :new), "New Venue") %></span>
