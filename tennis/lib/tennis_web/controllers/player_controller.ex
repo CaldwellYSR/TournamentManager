@@ -6,9 +6,8 @@ defmodule TennisWeb.PlayerController do
   alias Tennis.Accounts
   alias Tennis.Accounts.Player
 
-  # the following plugs are defined in the controllers/authorize.ex file
-  plug(:user_check when action in [:index, :show])
-  plug(:id_check when action in [:edit, :update, :delete])
+  plug(:role_check, [roles: ["admin"]] when action in [:index, :delete])
+  plug(:id_or_role, [roles: ["admin"]] when action in [:show, :update, :edit])
 
   def index(conn, _params) do
     players = Accounts.list_players()

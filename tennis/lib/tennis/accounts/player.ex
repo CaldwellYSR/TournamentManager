@@ -7,6 +7,7 @@ defmodule Tennis.Accounts.Player do
     field(:email, :string)
     field(:wins, :integer)
     field(:losses, :integer)
+    field(:role, :string, default: "player")
     field(:password, :string, virtual: true)
     field(:password_hash, :string)
     field(:sessions, {:map, :integer}, default: %{})
@@ -14,12 +15,18 @@ defmodule Tennis.Accounts.Player do
     timestamps()
   end
 
+  @valid_roles [
+    "admin",
+    "player"
+  ]
+
   @doc false
   def changeset(player, params) do
     player
-    |> cast(params, [:name, :email, :password, :wins, :losses])
+    |> cast(params, [:name, :email, :password, :wins, :losses, :role])
     |> validate_required([:name, :email])
-    |> validate_email
+    |> validate_inclusion(:role, @valid_roles, message: "Please select a valid role")
+    |> validate_email()
   end
 
   def create_changeset(player, params) do

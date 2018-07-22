@@ -19,6 +19,12 @@
     </div>
 
     <div class="form-group">
+      <%= label f, :role, class: "control-label" %>
+      <%= select(f, :role, ["Admin": "admin", "Player": "player"]) %>
+      <%= error_tag f, :role %>
+    </div>
+
+    <div class="form-group">
       <%= label f, :password, class: "control-label" %>
       <%= password_input f, :password, class: "form-control" %>
       <%= error_tag f, :password %>
