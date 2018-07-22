@@ -1,0 +1,17 @@
+<h2><%= @venue.name %></h2>
+<p class="lead"><%= @venue.address %></p>
+<hr class="border-white my-4" />
+<p><%= @venue.description %></p>
+
+<div
+  class="jumbotron venue_map"
+  data-address="<%= @venue.address %>"
+  data-name="<%= @venue.name %>"
+  id="venue_map"></div>
+
+<nav class="nav">
+  <span class="nav-item"><%= link "Edit", to: venue_path(@conn, :edit, @venue), class: ["nav-link"] %></span>
+  <span class="nav-item"><%= link "Back", to: venue_path(@conn, :index), class: ["nav-link"] %></span>
+</nav>
+
+<script src="<%= static_path(@conn, "/js/venue_maps.js") %>"></script>

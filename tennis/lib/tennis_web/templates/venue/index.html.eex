@@ -1,0 +1,30 @@
+<h2>Listing Venues</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Number of Courts</th>
+      <th>Lights?</th>
+      <th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for venue <- @venues do %>
+    <tr>
+      <td><a href="/venues/<%= venue.id %>"><%= venue.name %></a></td>
+      <td><a href="https://www.google.com/maps/search/?api=1&query=<%= URI.encode_www_form(venue.address) %>" target="_blank"><%= venue.address %></a></td>
+      <td><%= venue.number_of_courts %></td>
+      <td><%= venue.has_lights %></td>
+      <td class="text-right">
+        <span><%= link "Show", to: venue_path(@conn, :show, venue), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: venue_path(@conn, :edit, venue), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: venue_path(@conn, :delete, venue), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Venue", to: venue_path(@conn, :new) %></span>

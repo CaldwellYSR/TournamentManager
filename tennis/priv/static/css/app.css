@@ -16,6 +16,10 @@ body, form, ul, table {
   background-size: 519px 71px;
 }
 
+.venue_map {
+  height: 400px;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
   .container {

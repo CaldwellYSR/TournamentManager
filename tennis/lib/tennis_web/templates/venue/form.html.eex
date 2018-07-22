@@ -1,0 +1,47 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <%= label f, :name, class: "col-form-label col-sm-2" %>
+    <%= text_input f, :name, class: "form-control col-sm-8" %>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div class="form-group row">
+    <%= label f, :address, class: "col-form-label col-sm-2" %>
+    <%= text_input f, :address, class: "form-control col-sm-8" %>
+    <%= error_tag f, :address %>
+  </div>
+
+  <div class="form-group row">
+    <%= label f, :description, class: "col-form-label col-sm-2" %>
+    <%= textarea f, :description, class: "form-control col-sm-8" %>
+    <%= error_tag f, :description %>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-form-label col-sm-2">
+      Details
+    </div>
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= checkbox f, :has_lights, class: "form-check-input" %>
+        <%= label f, :has_lights, class: "form-check-label" %>
+        <%= error_tag f, :has_lights %>
+      </div>
+      <div class="form-group row">
+        <%= number_input f, :number_of_courts, class: "form-control col-sm-2" %>
+        <%= label f, :number_of_courts, class: "col-form-label col-sm-8" %>
+        <%= error_tag f, :number_of_courts %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

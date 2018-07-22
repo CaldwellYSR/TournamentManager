@@ -22,6 +22,7 @@ defmodule TennisWeb.Router do
     get("/", PageController, :index)
     resources("/players", PlayerController)
     resources("/sessions", SessionController, only: [:new, :create, :delete])
+    resources("/venues", VenueController)
   end
 
   # Other scopes may use custom stacks.
