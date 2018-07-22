@@ -36,7 +36,6 @@
       </main>
 
     </div> <!-- /container -->
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADkY3zl1SigDdhY9yuNmCH0am8Sv-yzqA&callback=initMap"></script>
     <script defer src="<%= static_path(@conn, "/js/bootstrap.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
