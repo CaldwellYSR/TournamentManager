@@ -1,8 +1,5 @@
-<h2><%= @player.name %></h2>
-
-<div class="row">
-  <a class="col-sm-12" href="mailto:<%= @player.email %>"><%= @player.email %></a>
-</div>
+<h2><%= @player.name %> <span class="small">(<%= @player.wins %>/<%= @player.losses %>)</span></h2>
+<a class="my-4" href="mailto:<%= @player.email %>"><%= @player.email %></a>
 
 <div class="row mt-5">
   <span class="col-auto mr-auto"><%= link "Edit", to: player_path(@conn, :edit, @player) %></span>

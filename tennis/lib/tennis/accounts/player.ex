@@ -5,6 +5,8 @@ defmodule Tennis.Accounts.Player do
   schema "players" do
     field(:name, :string)
     field(:email, :string)
+    field(:wins, :integer)
+    field(:losses, :integer)
     field(:password, :string, virtual: true)
     field(:password_hash, :string)
     field(:sessions, {:map, :integer}, default: %{})
@@ -15,7 +17,7 @@ defmodule Tennis.Accounts.Player do
   @doc false
   def changeset(player, params) do
     player
-    |> cast(params, [:name, :email, :password])
+    |> cast(params, [:name, :email, :password, :wins, :losses])
     |> validate_required([:name, :email])
     |> validate_email
   end
