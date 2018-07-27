@@ -11,8 +11,10 @@ defmodule Tennis.Accounts.Player do
     field(:password, :string, virtual: true)
     field(:password_hash, :string)
     field(:sessions, {:map, :integer}, default: %{})
-
     timestamps()
+
+    has_many(:matches_player_one, Tennis.Tournaments.Match, foreign_key: :player_one_id)
+    has_many(:matches_player_two, Tennis.Tournaments.Match, foreign_key: :player_two_id)
   end
 
   @valid_roles [

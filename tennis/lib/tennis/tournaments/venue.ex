@@ -8,8 +8,9 @@ defmodule Tennis.Tournaments.Venue do
     field(:description, :string)
     field(:number_of_courts, :integer)
     field(:has_lights, :boolean)
-
     timestamps()
+
+    has_many(:matches, Tennis.Tournaments.Match)
   end
 
   @doc false

@@ -13,12 +13,24 @@ defmodule Tennis.Accounts do
 
   ## Examples
 
-      iex> list_players()
-      [%Player{}, ...]
+  iex> list_players()
+  [%Player{}, ...]
 
   """
   def list_players do
     Repo.all(Player)
+  end
+
+  @doc """
+  Returns a list of players to be used in a select helper.
+
+  ## Examples
+  iex> list_players_for_select()
+  [[key: "PlayerName", value: "PlayerId"], ...]
+  """
+  def list_players_for_select() do
+    Repo.all(Player)
+    |> Enum.map(fn player -> [key: "#{player.name} <#{player.email}>", value: player.id] end)
   end
 
   @doc """
@@ -28,11 +40,11 @@ defmodule Tennis.Accounts do
 
   ## Examples
 
-      iex> get_player!(123)
-      %Player{}
+  iex> get_player!(123)
+  %Player{}
 
-      iex> get_player!(456)
-      ** (Ecto.NoResultsError)
+  iex> get_player!(456)
+  ** (Ecto.NoResultsError)
 
   """
   def get(id), do: Repo.get(Player, id)
@@ -46,11 +58,11 @@ defmodule Tennis.Accounts do
 
   ## Examples
 
-      iex> create_player(%{field: value})
-      {:ok, %Player{}}
+  iex> create_player(%{field: value})
+  {:ok, %Player{}}
 
-      iex> create_player(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
+  iex> create_player(%{field: bad_value})
+  {:error, %Ecto.Changeset{}}
 
   """
   def create_player(attrs \\ %{}) do
@@ -64,11 +76,11 @@ defmodule Tennis.Accounts do
 
   ## Examples
 
-      iex> update_player(player, %{field: new_value})
-      {:ok, %Player{}}
+  iex> update_player(player, %{field: new_value})
+  {:ok, %Player{}}
 
-      iex> update_player(player, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
+  iex> update_player(player, %{field: bad_value})
+  {:error, %Ecto.Changeset{}}
 
   """
   def update_player(%Player{} = player, attrs) do
@@ -82,11 +94,11 @@ defmodule Tennis.Accounts do
 
   ## Examples
 
-      iex> delete_player(player)
-      {:ok, %Player{}}
+  iex> delete_player(player)
+  {:ok, %Player{}}
 
-      iex> delete_player(player)
-      {:error, %Ecto.Changeset{}}
+  iex> delete_player(player)
+  {:error, %Ecto.Changeset{}}
 
   """
   def delete_player(%Player{} = player) do
@@ -98,8 +110,8 @@ defmodule Tennis.Accounts do
 
   ## Examples
 
-      iex> change_player(player)
-      %Ecto.Changeset{source: %Player{}}
+  iex> change_player(player)
+  %Ecto.Changeset{source: %Player{}}
 
   """
   def change_player(%Player{} = player) do
